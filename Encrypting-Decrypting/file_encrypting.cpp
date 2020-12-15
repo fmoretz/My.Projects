@@ -12,62 +12,80 @@ int main(){
 
 	char script[100], ch;
 	fstream ftin, ftout;
+	int todo;
 
-//	//Encrypting Section
-	//call the file 
-	cout << "Enter the file name:" <<endl;
-	cin >> script;
+	// Menù Selection
+	cout << "Choose an action:" << endl,
+	cout << "1. Encrypt file." << endl;
+	cout << "2. Decrypt file." << endl;
+	cout << "3. Exit." << endl;
 
-	ftin.open(script, fstream::in);
+	switch(todo) {
+		case 1 :
 
-	ftout.open("tmp.txt", fstream::out);
+			//Encrypting Section
+			//call the file 
+			cout << "Enter the file name:" <<endl;
+			cin >> script;
 
-	// encrypt message loop
-	while(ftin>>noskipws>>ch){
-		
-		// encrypting key
-		ch = ch + key;
-		ftout << ch;
-	}
+			ftin.open(script, fstream::in);
 
-	ftout.close();
-	ftin.close();
+			ftout.open("tmp.txt", fstream::out);
 
-	//copyng in the original file the encrypt code
-	ftin.open(script, fstream::out);
-	ftout.open("tmp.txt", fstream::in);
+			// encrypt message loop
+			while(ftin>>noskipws>>ch){
+				
+				// encrypting key
+				ch = ch + key;
+				ftout << ch;
+			}
 
-	while(ftout>>noskipws>>ch){
-		ftin << ch;
-	}
+			ftout.close();
+			ftin.close();
 
-	ftin.close();
-	ftout.close();
+			//copyng in the original file the encrypt code
+			ftin.open(script, fstream::out);
+			ftout.open("tmp.txt", fstream::in);
 
-	cout << "\nFile encrypted successfully" << endl;
-	//remove('tmp.txt');
+			while(ftout>>noskipws>>ch){
+				ftin << ch;
+			}
 
-//  //Decrypt Section
-	//call the file 
-	cout << "Enter the file name:" <<endl;
-	cin >> script;
+			ftin.close();
+			ftout.close();
 
-	ftin.open(script, fstream::out);
+			cout << "\nFile encrypted successfully" << endl;
+			//remove('tmp.txt');
+			break;
 
-	ftout.open("tmp.txt", fstream::in);
+		case 2 :
 
-	// encrypt message loop
-	while(ftout>>noskipws>>ch){
-		
-		// encrypting key
-		ch = ch - key;
-		ftin << ch;
-	}
+		    //Decrypt Section
+			//call the file 
+			cout << "Enter the file name:" <<endl;
+			cin >> script;
 
-	ftout.close();
-	ftin.close();
+			ftin.open(script, fstream::out);
 
-	cout << "\nFile decrypted successfully" << endl;
+			ftout.open("tmp.txt", fstream::in);
+
+			// encrypt message loop
+			while(ftout>>noskipws>>ch){
+				
+				// encrypting key
+				ch = ch - key;
+				ftin << ch;
+			}
+
+			ftout.close();
+			ftin.close();
+
+			cout << "\nFile decrypted successfully" << endl;
+			break;
+
+		case 3 :
+
+			break;
 
 	return 0;
 }
