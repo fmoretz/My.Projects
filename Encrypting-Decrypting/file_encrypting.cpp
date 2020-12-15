@@ -20,6 +20,8 @@ int main(){
 	cout << "2. Decrypt file." << endl;
 	cout << "3. Exit." << endl;
 
+	cin >> todo;
+
 	switch(todo) {
 		case 1 :
 
@@ -86,6 +88,7 @@ int main(){
 		case 3 :
 
 			break;
+	}
 
 	return 0;
 }
