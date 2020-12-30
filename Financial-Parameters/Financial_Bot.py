@@ -5,15 +5,24 @@ import matplotlib.pyplot as plt
 import datetime as dt
 plt.style.use('ggplot');
 
-start = '2020-01-01';
-end   = '2020-10-31';
+#date format: year-month-day
+start = input('write starting date in format (yyyy-mm-dd)_: ');
+end   = input('write ending date in format (yyyy-mm-dd)___: ');
+stock = input('write the stock-name to look at____________: ');
 
-price = yf.download('AAPL', start, end);
+#looking to databases
+price   = yf.download(stock, start, end);
 returns = price.Close;
 
+
+#plotting results
+titlefig = stock+' close value';
 plt.figure(1);
+plt.title(titlefig);
 plt.plot(returns);
-plt.xlabel('time [days]');
-plt.ylabel('Prices');
+plt.xlabel('time');
+plt.ylabel('close [$]');
+plt.grid(b=1);
 plt.show();
+
 
