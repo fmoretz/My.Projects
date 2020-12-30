@@ -8,7 +8,7 @@ plt.style.use('ggplot');
 #date format: year-month-day
 start = input('write starting date in format (yyyy-mm-dd)_: ');
 end   = input('write ending date in format (yyyy-mm-dd)___: ');
-stock = input('write the stock-name to look at____________: ');
+stock = input('write the stock-name to look at (AAPL)_____: ');
 
 #looking to databases
 price   = yf.download(stock, start, end);
