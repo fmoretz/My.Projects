@@ -1,0 +1,59 @@
+
+Function f(ByVal x#)
+yy = x ^ 3 + 5 * (x ^ 2) - 10 * x
+End Function
+'=======================================================
+Sub golden_method()
+    'find the maxima of the function function
+    Dim i As Integer, lb As Double, ub As Double, gr As Double, d As Double, tol As Long
+    Dim x1 As Double, x2 As Double, fx1 As Double, fx2 As Double, j As Integer, opt As Double
+    
+    gr = (Sqr(5) - 1) / 2
+    lb = InputBox("Enter the lower boundary:")
+    ub = InputBox("Enter the upper boundary:")
+    j = InputBox("enter the number of maximum iterations (integer < 10000):")
+    tol = 0.00000000001
+    
+    While i < j Or Abs(lb - ub) < tol
+        d = gr * (ub - lb)
+        x1 = lb + d
+        x2 = ub - d
+        fx1 = -fnc(x1)
+        fx2 = -fnc(x2)
+        
+        If fx1 < fx2 Then
+            lb = x2
+        Else
+            ub = x1
+        End If
+        i = i + 1
+    Wend
+    opt = (x1 + x2) / 2
+    
+    MsgBox ("Maximum function value is " & FormatNumber(fnc(opt), 2) & " occurs at a value of " & FormatNumber(opt, 2))
+
+End Sub
+'==========================================================
+Public Function fnc(x)
+'function to maximize
+Dim fcn As Double
+
+fcn = Sin(x)
+fnc = -fcn
+
+End Function
+
+'==========================================================
+Public Sub btnGSC()
+    'subroutine for the button which activate the alghorithm
+    
+    Dim l As Double
+    Dim u As Double
+    
+    l = Range("D17")
+    u = Range("E17")
+        
+    GOLDEN_SEARCH l, u
+    
+End Sub
+'----------------------------------------------------------------------------

@@ -1,0 +1,6 @@
+Public Function EULER(y As Double, h As Double, f_val As Double) As Double
+    'euler method for ode solution
+    
+    EULER = y + f_val * h
+    
+End Function
