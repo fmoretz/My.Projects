@@ -1,0 +1,8 @@
+set terminal pngcairo
+set title 'Temperature Trend'
+set xlabel 'pack height [m]'
+set ylabel '[°C]'
+set grid
+plot 'Liq.dat' using 1:2 w lines,'Gas.dat' using 1:2 w lines
+set output 'Temp_Trends.png'
+replot
