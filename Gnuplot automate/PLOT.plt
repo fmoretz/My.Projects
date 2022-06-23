@@ -3,7 +3,7 @@
 
 # TAKE FILE NAME AND PATH FROM COMMAND LINE
 # to take a file from the command line, use the following command:
-# $ gnuplot -e "filename='file.dat'" PLOT.plt
+# $ gnuplot -e "filename='filename.dat'" PLOT.plt
 reset
 if ( !exists("filename") ) quit("No file name given")
 
@@ -11,6 +11,7 @@ if ( !exists("filename") ) quit("No file name given")
 set terminal svg enhanced size 1000,1000
 set output filename.'.svg'
 
+# to save it in png, switch these two terminals
 # set terminal pngcairo enhanced size 1000,1000
 # set output 'gnuplot_figure.png'
 
@@ -31,7 +32,7 @@ do for [i=1:ROWS] {
 
   do for [j=1:COLS] {
 
-        print index
+        print "plot n°", index                          # check visaully all the plots where done
 
         # PLOTTING PARAMETERS
         set autoscale                                   # scale axes automatically
@@ -47,10 +48,10 @@ do for [i=1:ROWS] {
         
         firstrow = system('head -1 '.filename)          # GET FIRST ROW OF DATA FILE
         set xlabel word(firstrow, 1)                    # SET X LABEL
-        set ylabel word(firstrow, index+1)         # SET Y LABEL
-
-        index = index + 1
-        if ( index > max_col ) {
+        set ylabel word(firstrow, index+1)              # SET Y LABEL
+  
+        index = index + 1                               # Autoincrement index
+        if ( index > max_col ) {                        # stop increment when limit is reached
           break
         }
 
